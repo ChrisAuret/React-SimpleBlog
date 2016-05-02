@@ -2,14 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-
-import App from './components/app';
+import { Router, browserHistory } from 'react-router'; 
 import reducers from './reducers';
+import routes from './routes';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <Router history={browserHistory} routes={routes} />
   </Provider>
   , document.querySelector('.container'));
+
+
+/*
+  Tells ReactRouter how to interperet changes to the URL
+  browserHistory, also 2 more histories one can use (hashHistory '#', MemoryHistory)
+
+  http://www.blog.com/post/5
+  
+  'post/5' <-- this part
+*/
