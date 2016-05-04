@@ -13,6 +13,9 @@ class PostsNew extends Component {
                 <div className="form-group">
                     <label>Title</label>
                     <input type="text" className="form-control" {...title} />
+                    <div className="text-help">
+                    {title.touched ? title.error : ""}
+                    </div>
                 </div>
                 
                 <div className="form-group">
@@ -30,6 +33,25 @@ class PostsNew extends Component {
         );   
     }
 }
+
+function validate(values){
+    const errors = {};
+    
+    if(!values.title){
+        errors.title = "Please enter a username";
+    }
+    
+    if(!values.categories){
+        errors.title = "Please enter a category";
+    }
+    
+    if(!values.content){
+        errors.title = "Please enter some content";
+    }
+    
+    return errors;
+}
+
 // Connect:
 // first arg is mapStateToProps, 
 // 2nd arg is mapDispatchToProps
